@@ -1,567 +1,255 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Undangan Pernikahan - Supriyadi & Neti</title>
-
-  <!-- Google Fonts & Font Awesome -->
-  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Poppins:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Aref+Ruqaa:wght@400;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
-  <style>
-    :root {
-      --bg-color: #eaf1f8;
-      --card-bg: rgba(255, 255, 255, 0.88);
-      --primary-blue: #5b789a;
-      --dark-blue: #2c3e55;
-      --gold-accent: #c29b53;
-      --text-gray: #55606e;
-    }
-
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      scroll-behavior: smooth;
-    }
-
-    body {
-      font-family: 'Poppins', sans-serif;
-      background-color: #c7d8e8;
-      color: var(--dark-blue);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      min-height: 100vh;
-    }
-
-    /* Container HP */
-    .mobile-container {
-      width: 100%;
-      max-width: 450px;
-      background: var(--bg-color);
-      min-height: 100vh;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-      position: relative;
-      overflow-x: hidden;
-    }
-
-    /* Floating Music Control */
-    .music-btn {
-      position: fixed;
-      top: 20px;
-      right: 20px;
-      width: 45px;
-      height: 45px;
-      background: rgba(255, 255, 255, 0.9);
-      border: 1px solid var(--primary-blue);
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: var(--primary-blue);
-      font-size: 1.2rem;
-      cursor: pointer;
-      z-index: 1001;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-      animation: pulse 2s infinite;
-    }
-
-    @keyframes pulse {
-      0% { transform: scale(1); }
-      50% { transform: scale(1.08); }
-      100% { transform: scale(1); }
-    }
-
-    /* Navbar Bawah */
-    .navbar {
-      position: fixed;
-      bottom: 20px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: calc(100% - 40px);
-      max-width: 410px;
-      background: rgba(91, 120, 154, 0.92);
-      backdrop-filter: blur(8px);
-      border-radius: 30px;
-      display: flex;
-      justify-content: space-around;
-      padding: 10px 8px;
-      z-index: 1000;
-      box-shadow: 0 5px 20px rgba(0,0,0,0.15);
-    }
-
-    .nav-btn {
-      color: rgba(255,255,255,0.7);
-      text-decoration: none;
-      font-size: 0.72rem;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 3px;
-      transition: all 0.3s ease;
-    }
-
-    .nav-btn i { font-size: 1.1rem; }
-    .nav-btn.active, .nav-btn:hover { color: #ffffff; }
-
-    /* Section Utama */
-    .page-section {
-      min-height: 100vh;
-      padding: 40px 20px 90px;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-      position: relative;
-      background-color: var(--bg-color);
-      border-bottom: 1px solid rgba(0,0,0,0.05);
-    }
-
-    /* Hiasan Bunga Floral */
-    .floral-top-left {
-      position: absolute;
-      top: -10px;
-      left: -10px;
-      width: 140px;
-      pointer-events: none;
-      z-index: 1;
-      opacity: 0.85;
-    }
-
-    .floral-bottom-right {
-      position: absolute;
-      bottom: -10px;
-      right: -10px;
-      width: 140px;
-      transform: rotate(180deg);
-      pointer-events: none;
-      z-index: 1;
-      opacity: 0.85;
-    }
-
-    .content-card {
-      position: relative;
-      z-index: 2;
-      width: 100%;
-      background: var(--card-bg);
-      border-radius: 16px;
-      padding: 30px 20px;
-      box-shadow: 0 4px 20px rgba(91, 120, 154, 0.12);
-      border: 1px solid rgba(255, 255, 255, 0.6);
-    }
-
-    /* Element Desain */
-    .cover-title {
-      font-family: 'Playfair Display', serif;
-      font-size: 2rem;
-      font-style: italic;
-      color: var(--primary-blue);
-      margin-bottom: 4px;
-    }
-
-    .cover-date {
-      font-size: 0.82rem;
-      color: var(--text-gray);
-      margin-bottom: 25px;
-    }
-
-    .monogram-circle {
-      width: 140px;
-      height: 140px;
-      margin: 0 auto 25px;
-      border-radius: 50%;
-      border: 2px solid var(--gold-accent);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      position: relative;
-      background: rgba(255, 255, 255, 0.5);
-    }
-
-    .monogram-text {
-      font-family: 'Playfair Display', serif;
-      font-size: 2.2rem;
-      color: var(--gold-accent);
-      font-style: italic;
-    }
-
-    .arabic-text {
-      font-family: 'Aref Ruqaa', serif;
-      font-size: 1.6rem;
-      color: var(--primary-blue);
-      margin-bottom: 12px;
-    }
-
-    .intro-text {
-      font-size: 0.82rem;
-      line-height: 1.6;
-      color: var(--text-gray);
-      margin-bottom: 20px;
-    }
-
-    .bride-name {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.8rem;
-      color: var(--primary-blue);
-      font-weight: 600;
-      margin: 6px 0;
-    }
-
-    .bride-parents {
-      font-size: 0.8rem;
-      color: var(--text-gray);
-      margin-bottom: 12px;
-    }
-
-    .ampersand {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.5rem;
-      color: var(--gold-accent);
-      margin: 8px 0;
-    }
-
-    /* Kotak Tanggal Minimalis */
-    .date-badge-container {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      gap: 12px;
-      margin: 20px 0;
-    }
-
-    .date-box-side {
-      border: 1px solid var(--primary-blue);
-      padding: 6px 16px;
-      border-radius: 4px;
-      font-size: 0.85rem;
-      color: var(--primary-blue);
-      font-weight: 500;
-      letter-spacing: 2px;
-    }
-
-    .date-box-main {
-      font-size: 2.5rem;
-      font-weight: 700;
-      color: var(--primary-blue);
-      line-height: 1;
-    }
-
-    .month-year {
-      font-size: 0.9rem;
-      font-weight: 600;
-      color: var(--primary-blue);
-      letter-spacing: 2px;
-      margin-bottom: 12px;
-    }
-
-    .location-text {
-      font-size: 0.82rem;
-      color: var(--text-gray);
-      background: rgba(91, 120, 154, 0.08);
-      padding: 8px 12px;
-      border-radius: 6px;
-      margin: 12px 0;
-      line-height: 1.4;
-    }
-
-    .btn-maps {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      background-color: #8c9cb3;
-      color: #ffffff;
-      padding: 12px 24px;
-      border-radius: 8px;
-      text-decoration: none;
-      font-size: 0.88rem;
-      font-weight: 500;
-      margin-top: 15px;
-      transition: background 0.3s ease;
-    }
-
-    .btn-maps:hover {
-      background-color: var(--primary-blue);
-    }
-
-    .map-frame {
-      width: 100%;
-      height: 220px;
-      border-radius: 12px;
-      border: 1px solid rgba(91, 120, 154, 0.3);
-      margin-top: 15px;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reminder Berkas Calon Karyawan</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
 </head>
-<body>
+<body class="bg-slate-50 text-slate-800 font-sans min-h-screen">
 
-  <!-- Audio Musik Otomatis (Menggunakan Musik Instrumen Romantis) -->
-  <audio id="bg-music" loop>
-    <source src="https://cdn.pixabay.com/download/audio/2022/05/27/audio_1808fbf07a.mp3?filename=wedding-romantic-piano-112199.mp3" type="audio/mpeg">
-  </audio>
+    <!-- Header / Navbar -->
+    <header class="bg-red-600 text-white shadow-md">
+        <div class="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
+            <div class="flex items-center gap-3">
+                <i class="fa-solid fa-user-check text-2xl"></i>
+                <h1 class="text-xl font-bold tracking-wide">Portal Reminder Berkas Recruitment</h1>
+            </div>
+            <span class="bg-red-700 text-xs px-3 py-1 rounded-full border border-red-500">Recruitment Team</span>
+        </div>
+    </header>
 
-  <!-- Tombol Musik Floating -->
-  <div class="music-btn" id="music-toggle" onclick="toggleMusic()">
-    <i class="fa-solid fa-music" id="music-icon"></i>
-  </div>
+    <!-- Main Container -->
+    <main class="max-w-7xl mx-auto px-4 py-6">
 
-  <div class="mobile-container">
-
-    <!-- Floating Navbar Bawah -->
-    <nav class="navbar">
-      <a href="#cover" class="nav-btn active">
-        <i class="fa-solid fa-heart"></i>
-        <span>Cover</span>
-      </a>
-      <a href="#akad" class="nav-btn">
-        <i class="fa-solid fa-ring"></i>
-        <span>Akad</span>
-      </a>
-      <a href="#resepsi" class="nav-btn">
-        <i class="fa-solid fa-envelope-open"></i>
-        <span>Resepsi</span>
-      </a>
-      <a href="#lokasi" class="nav-btn">
-        <i class="fa-solid fa-map-location-dot"></i>
-        <span>Peta</span>
-      </a>
-    </nav>
-
-
-    <!-- 1. COVER / BAGIAN DEPAN -->
-    <section id="cover" class="page-section">
-      <svg class="floral-top-left" viewBox="0 0 200 200">
-        <g fill="#8c9cb3">
-          <path d="M0,0 Q80,20 100,80 Q30,60 0,0 Z" />
-          <path d="M0,0 Q20,80 80,100 Q60,30 0,0 Z" fill="#c29b53" />
-        </g>
-      </svg>
-      <svg class="floral-bottom-right" viewBox="0 0 200 200">
-        <g fill="#8c9cb3">
-          <path d="M0,0 Q80,20 100,80 Q30,60 0,0 Z" />
-          <path d="M0,0 Q20,80 80,100 Q60,30 0,0 Z" fill="#c29b53" />
-        </g>
-      </svg>
-
-      <div class="content-card">
-        <div class="cover-title">Undangan</div>
-        <div class="cover-date">Ahad, 04 Oktober 2026</div>
-
-        <div class="monogram-circle">
-          <div class="monogram-text">S & N</div>
+        <!-- Banner Statistics -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+            <div class="bg-white p-5 rounded-lg shadow-sm border border-slate-200 border-l-4 border-l-amber-500">
+                <p class="text-sm text-slate-500 font-medium">Pending Berkas</p>
+                <p class="text-2xl font-bold text-slate-800" id="stat-pending">3 Orang</p>
+            </div>
+            <div class="bg-white p-5 rounded-lg shadow-sm border border-slate-200 border-l-4 border-l-green-500">
+                <p class="text-sm text-slate-500 font-medium">Berkas Lengkap</p>
+                <p class="text-2xl font-bold text-slate-800" id="stat-complete">1 Orang</p>
+            </div>
+            <div class="bg-white p-5 rounded-lg shadow-sm border border-slate-200 border-l-4 border-l-blue-500">
+                <p class="text-sm text-slate-500 font-medium">Total Calon Karyawan</p>
+                <p class="text-2xl font-bold text-slate-800" id="stat-total">4 Orang</p>
+            </div>
         </div>
 
-        <p style="font-size: 0.85rem; color: var(--text-gray); margin-bottom: 6px;">Kepada Yth.</p>
-        <p style="font-size: 0.95rem; font-weight: 600; color: var(--primary-blue);">Bapak/Ibu/Saudara/i:</p>
-      </div>
-    </section>
-
-
-    <!-- 2. AKAD NIKAH -->
-    <section id="akad" class="page-section">
-      <svg class="floral-top-left" viewBox="0 0 200 200">
-        <g fill="#8c9cb3">
-          <path d="M0,0 Q80,20 100,80 Q30,60 0,0 Z" />
-          <path d="M0,0 Q20,80 80,100 Q60,30 0,0 Z" fill="#c29b53" />
-        </g>
-      </svg>
-      <svg class="floral-bottom-right" viewBox="0 0 200 200">
-        <g fill="#8c9cb3">
-          <path d="M0,0 Q80,20 100,80 Q30,60 0,0 Z" />
-          <path d="M0,0 Q20,80 80,100 Q60,30 0,0 Z" fill="#c29b53" />
-        </g>
-      </svg>
-
-      <div class="content-card">
-        <div class="arabic-text">بسم الله الرحمن الرحيم</div>
-        <p class="intro-text" style="font-style: italic;">
-          Assalamu'alaikum warahmatullahi wabarakatuh
-        </p>
-        <p class="intro-text">
-          Dengan ini kami mengundang Bapak/Ibu/Saudara/i untuk hadir pada pernikahan putra dan putri kami:
-        </p>
-
-        <div class="bride-name">H. Supriyadi, A.md</div>
-        <div class="bride-parents">putra pertama Bapak Badri (Alm) dan Ibu Siti Maryam</div>
-
-        <div class="ampersand">&</div>
-
-        <div class="bride-name">Neti Cahyati, S.Pd.I</div>
-        <div class="bride-parents">putri pertama Bapak Memen Wasman dan Ibu Fulanah</div>
-
-        <hr style="border:0; height:1px; background:rgba(91,120,154,0.2); margin:18px 0;">
-
-        <p style="font-size: 0.82rem; color: var(--text-gray);">
-          Akad Nikah yang insya Allah akan dilaksanakan pada:
-        </p>
-
-        <div class="date-badge-container">
-          <div class="date-box-side">AHAD</div>
-          <div class="date-box-main">04</div>
-          <div class="date-box-side">09.00 WIB</div>
-        </div>
-        <div class="month-year">OKTOBER 2026</div>
-
-        <div class="location-text">
-          <strong>Lokasi Akad:</strong><br>
-          Dusun Pondoklombok Rt 04 Rw 09, Sidomulyo, Pangandaran
+        <!-- Filter & Actions Bar -->
+        <div class="bg-white p-4 rounded-lg shadow-sm border border-slate-200 mb-6 flex flex-wrap gap-4 justify-between items-center">
+            <div class="flex gap-2 items-center w-full md:w-auto">
+                <input type="text" id="searchInput" placeholder="Cari nama atau email..." onkeyup="filterData()" class="px-3 py-2 border border-slate-300 rounded-md text-sm w-full md:w-64 focus:outline-none focus:ring-2 focus:ring-red-500">
+                <select id="statusFilter" onchange="filterData()" class="px-3 py-2 border border-slate-300 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-red-500">
+                    <option value="ALL">Semua Status</option>
+                    <option value="PENDING" selected>Berkas Belum Lengkap</option>
+                    <option value="COMPLETE">Berkas Lengkap</option>
+                </select>
+            </div>
+            <div class="flex gap-2">
+                <button onclick="sendSelectedEmails()" class="bg-red-600 hover:bg-red-700 text-white text-sm px-4 py-2 rounded-md font-medium flex items-center gap-2 transition shadow-sm">
+                    <i class="fa-solid fa-paper-plane"></i> Kirim Reminder Terpilih
+                </button>
+            </div>
         </div>
 
-        <p style="font-size: 0.78rem; font-style: italic; color: var(--text-gray); margin-top: 10px;">
-          Wassalamu'alaikum Warahmatullahi Wabarakatuh
-        </p>
-      </div>
-    </section>
-
-
-    <!-- 3. RESEPSI -->
-    <section id="resepsi" class="page-section">
-      <svg class="floral-top-left" viewBox="0 0 200 200">
-        <g fill="#8c9cb3">
-          <path d="M0,0 Q80,20 100,80 Q30,60 0,0 Z" />
-          <path d="M0,0 Q20,80 80,100 Q60,30 0,0 Z" fill="#c29b53" />
-        </g>
-      </svg>
-      <svg class="floral-bottom-right" viewBox="0 0 200 200">
-        <g fill="#8c9cb3">
-          <path d="M0,0 Q80,20 100,80 Q30,60 0,0 Z" />
-          <path d="M0,0 Q20,80 80,100 Q60,30 0,0 Z" fill="#c29b53" />
-        </g>
-      </svg>
-
-      <div class="content-card">
-        <p class="intro-text" style="font-style: italic;">
-          Assalamu'alaikum warahmatullahi wabarakatuh
-        </p>
-        <p class="intro-text">
-          Dengan memohon Rahmat dan Ridho Allah SWT kami bermaksud menyelenggarakan acara resepsi pernikahan putra-putri kami yang insya Allah akan diselenggarakan pada:
-        </p>
-
-        <div class="date-badge-container">
-          <div class="date-box-side">AHAD</div>
-          <div class="date-box-main">04</div>
-          <div class="date-box-side">10.00 WIB</div>
+        <!-- Table Data Candidate -->
+        <div class="bg-white rounded-lg shadow-sm border border-slate-200 overflow-hidden">
+            <div class="overflow-x-auto">
+                <table class="w-full text-left text-sm text-slate-600">
+                    <thead class="bg-slate-100 text-slate-700 uppercase text-xs font-semibold tracking-wider">
+                        <tr>
+                            <th class="p-4 w-10">
+                                <input type="checkbox" id="selectAll" onclick="toggleSelectAll(this)">
+                            </th>
+                            <th class="p-4">Nama Candidate</th>
+                            <th class="p-4">Posisi</th>
+                            <th class="p-4">Email</th>
+                            <th class="p-4">Kekurangan Berkas</th>
+                            <th class="p-4">Status</th>
+                            <th class="p-4 text-center">Aksi</th>
+                        </tr>
+                    </thead>
+                    <tbody id="candidateTableBody" class="divide-y divide-slate-200">
+                        <!-- Data dimasukkan secara dinamis via JavaScript -->
+                    </tbody>
+                </table>
+            </div>
         </div>
-        <div class="month-year">OKTOBER 2026</div>
+    </main>
 
-        <div class="location-text">
-          <strong>Lokasi Resepsi:</strong><br>
-          Dusun Pondoklombok Rt 04 Rw 09, Sidomulyo, Pangandaran
-        </div>
+    <!-- JavaScript Script -->
+    <script>
+        // Sample Data berdasarkan data proses rekrutmen/kelulusan crew
+        const candidates = [
+            {
+                id: 1,
+                nama: "Ahmad Rizky",
+                posisi: "Crew Store",
+                email: "ahmad.rizky@example.com",
+                berkasBelum: ["FC Ijazah Legalisir", "SKCK Aktif"],
+                status: "PENDING"
+            },
+            {
+                id: 2,
+                nama: "Siti Rahmawati",
+                posisi: "DC Crew",
+                email: "siti.rahmawati@example.com",
+                berkasBelum: ["Pas Foto 4x6 Red Background", "Surat Keterangan Sehat"],
+                status: "PENDING"
+            },
+            {
+                id: 3,
+                nama: "Budi Santoso",
+                posisi: "Crew Store",
+                email: "budi.santoso@example.com",
+                berkasBelum: ["FC Kartu Keluarga", "FC KTP"],
+                status: "PENDING"
+            },
+            {
+                id: 4,
+                nama: "Dewi Lestari",
+                posisi: "DC Crew",
+                email: "dewi.lestari@example.com",
+                berkasBelum: [],
+                status: "COMPLETE"
+            }
+        ];
 
-        <p class="intro-text" style="margin-top: 15px;">
-          Merupakan suatu kehormatan dan kebahagiaan bagi kami apabila bapak/ibu/saudara/i berkenan hadir untuk memberikan doa restu kepada kedua mempelai.
-        </p>
-        <p class="intro-text" style="font-size: 0.78rem;">
-          Atas kehadiran dan doa restunya kami ucapkan terimakasih.
-        </p>
-        <p class="intro-text" style="font-style: italic; font-size: 0.78rem;">
-          Wassalamu'alaikum Warahmatullahi Wabarakatuh
-        </p>
+        // Render Data ke Tabel
+        function renderTable(data) {
+            const tbody = document.getElementById('candidateTableBody');
+            tbody.innerHTML = '';
 
-        <hr style="border:0; height:1px; background:rgba(91,120,154,0.2); margin:15px 0;">
+            if (data.length === 0) {
+                tbody.innerHTML = `<tr><td colspan="7" class="text-center p-6 text-slate-400">Tidak ada data candidate ditemukan</td></tr>`;
+                return;
+            }
 
-        <p style="font-size: 0.8rem; font-weight: 600; color: var(--primary-blue); margin-bottom: 8px;">Kami yang Berbahagia,</p>
-        <div style="display: flex; justify-content: space-around; font-size: 0.78rem; color: var(--text-gray);">
-          <div>
-            <strong>Kel. Besar Badri (Alm) &<br>Siti Maryam</strong>
-          </div>
-          <div>
-            <strong>Kel. Besar Memen<br>Wasman & Fulanah</strong>
-          </div>
-        </div>
-      </div>
-    </section>
+            data.forEach(item => {
+                const tr = document.createElement('tr');
+                tr.className = "hover:bg-slate-50 transition";
+                
+                const missingBadges = item.berkasBelum.length > 0 
+                    ? item.berkasBelum.map(b => `<span class="bg-amber-100 text-amber-800 text-xs font-medium px-2 py-0.5 rounded border border-amber-200 inline-block mr-1 mb-1">${b}</span>`).join('') 
+                    : `<span class="text-slate-400 text-xs italic">Tidak ada (Lengkap)</span>`;
 
+                const statusBadge = item.status === 'PENDING'
+                    ? `<span class="bg-red-100 text-red-700 text-xs font-semibold px-2.5 py-1 rounded-full">Belum Lengkap</span>`
+                    : `<span class="bg-green-100 text-green-700 text-xs font-semibold px-2.5 py-1 rounded-full">Lengkap</span>`;
 
-    <!-- 4. MAPS / LOKASI -->
-    <section id="lokasi" class="page-section">
-      <svg class="floral-top-left" viewBox="0 0 200 200">
-        <g fill="#8c9cb3">
-          <path d="M0,0 Q80,20 100,80 Q30,60 0,0 Z" />
-          <path d="M0,0 Q20,80 80,100 Q60,30 0,0 Z" fill="#c29b53" />
-        </g>
-      </svg>
-      <svg class="floral-bottom-right" viewBox="0 0 200 200">
-        <g fill="#8c9cb3">
-          <path d="M0,0 Q80,20 100,80 Q30,60 0,0 Z" />
-          <path d="M0,0 Q20,80 80,100 Q60,30 0,0 Z" fill="#c29b53" />
-        </g>
-      </svg>
+                const checkboxDisabled = item.status === 'COMPLETE' ? 'disabled' : '';
 
-      <div class="content-card">
-        <div class="cover-title" style="font-size: 1.6rem;">Lokasi Acara</div>
-        <p style="font-size: 0.8rem; color: var(--text-gray); margin-bottom: 10px;">
-          Purbahayu, Pangandaran, Jawa Barat
-        </p>
+                tr.innerHTML = `
+                    <td class="p-4">
+                        <input type="checkbox" class="candidate-select" value="${item.id}" ${checkboxDisabled}>
+                    </td>
+                    <td class="p-4 font-semibold text-slate-800">${item.nama}</td>
+                    <td class="p-4">${item.posisi}</td>
+                    <td class="p-4">${item.email}</td>
+                    <td class="p-4">${missingBadges}</td>
+                    <td class="p-4">${statusBadge}</td>
+                    <td class="p-4 text-center">
+                        ${item.status === 'PENDING' ? `
+                            <button onclick="sendSingleEmail(${item.id})" title="Kirim Email" class="bg-blue-50 text-blue-600 hover:bg-blue-600 hover:text-white px-3 py-1.5 rounded-md text-xs font-medium border border-blue-200 transition">
+                                <i class="fa-solid fa-envelope mr-1"></i> Email
+                            </button>
+                        ` : `-`}
+                    </td>
+                `;
+                tbody.appendChild(tr);
+            });
 
-        <iframe 
-          class="map-frame"
-          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15814.288229153393!2d108.625!3d-7.65!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e659359e19a4e3f%3A0x8e8eb4bf4cf204a2!2sSidomulyo%2C%20Pangandaran!5e0!3m2!1sid!2sid!4v1680000000000!5m2!1sid!2sid" 
-          allowfullscreen="" 
-          loading="lazy">
-        </iframe>
-
-        <div>
-          <a href="https://maps.app.goo.gl/BQEu44uxTvrUe2UJA" target="_blank" class="btn-maps">
-            Buka Lokasi via Google Maps
-          </a>
-        </div>
-      </div>
-    </section>
-
-  </div>
-
-  <script>
-    // Kontrol Musik
-    const music = document.getElementById("bg-music");
-    const musicIcon = document.getElementById("music-icon");
-    let isPlaying = false;
-
-    function toggleMusic() {
-      if (isPlaying) {
-        music.pause();
-        musicIcon.className = "fa-solid fa-music";
-      } else {
-        music.play();
-        musicIcon.className = "fa-solid fa-pause";
-      }
-      isPlaying = !isPlaying;
-    }
-
-    // Putar musik otomatis saat layar disentuh/diklik pertama kali
-    document.body.addEventListener('click', function() {
-      if (!isPlaying) {
-        music.play().then(() => {
-          isPlaying = true;
-          musicIcon.className = "fa-solid fa-pause";
-        }).catch(err => console.log(err));
-      }
-    }, { once: true });
-
-    // Active Tab Navigation
-    const sections = document.querySelectorAll('.page-section');
-    const navBtns = document.querySelectorAll('.nav-btn');
-
-    window.addEventListener('scroll', () => {
-      let current = '';
-      sections.forEach(section => {
-        const sectionTop = section.offsetTop;
-        const sectionHeight = section.clientHeight;
-        if (pageYOffset >= (sectionTop - sectionHeight / 3)) {
-          current = section.getAttribute('id');
+            updateStatistics();
         }
-      });
 
-      navBtns.forEach(btn => {
-        btn.classList.remove('active');
-        if (btn.getAttribute('href') === `#${current}`) {
-          btn.classList.add('active');
+        // Template Generator Email
+        function generateEmailContent(candidate) {
+            const subject = encodeURIComponent(`[REMINDER REKRUTMEN] Kelengkapan Berkas Calon Karyawan - ${candidate.nama}`);
+            const listBerkas = candidate.berkasBelum.map((b, i) => `${i + 1}. ${b}`).join('%0D%0A');
+            
+            const body = encodeURIComponent(
+`Halo ${candidate.nama},
+
+Selamat, Anda telah melampaui tahapan seleksi rekrutmen kami untuk posisi ${candidate.posisi}.
+
+Guna melanjutkan ke proses verifikasi dan administrasi selanjutnya, kami menginformasikan bahwa masih terdapat dokumen/berkas Anda yang belum lengkap:
+
+${candidate.berkasBelum.map((b, i) => `${i + 1}.${b}`).join('\n')}
+
+Mohon untuk dapat melengkapi dan mengirimkan ulang balasan email ini beserta lampiran berkas di atas paling lambat dalam kurun waktu 2x24 jam.
+
+Jika ada pertanyaan, silakan hubungi Tim Recruitment.
+
+Salam,
+Tim Recruitment`
+            );
+
+            return `mailto:${candidate.email}?subject=${subject}&body=${body}`;
         }
-      });
-    });
-  </script>
+
+        // Kirim Tunggal
+        function sendSingleEmail(id) {
+            const candidate = candidates.find(c => c.id === id);
+            if (candidate) {
+                window.location.href = generateEmailContent(candidate);
+            }
+        }
+
+        // Kirim Terpilih (Membuka mailto satu per satu)
+        function sendSelectedEmails() {
+            const checkboxes = document.querySelectorAll('.candidate-select:checked');
+            if (checkboxes.length === 0) {
+                alert('Pilih setidaknya satu candidate berkas belum lengkap.');
+                return;
+            }
+
+            checkboxes.forEach((cb, index) => {
+                const candidate = candidates.find(c => c.id == cb.value);
+                if (candidate) {
+                    setTimeout(() => {
+                        window.open(generateEmailContent(candidate), '_blank');
+                    }, index * 800); // jeda agar browser tidak memblokir popup
+                }
+            });
+        }
+
+        // Toggle Select All Checkbox
+        function toggleSelectAll(source) {
+            const checkboxes = document.querySelectorAll('.candidate-select:not([disabled])');
+            checkboxes.forEach(cb => cb.checked = source.checked);
+        }
+
+        // Filter Function
+        function filterData() {
+            const searchValue = document.getElementById('searchInput').value.toLowerCase();
+            const statusValue = document.getElementById('statusFilter').value;
+
+            const filtered = candidates.filter(item => {
+                const matchesSearch = item.nama.toLowerCase().includes(searchValue) || item.email.toLowerCase().includes(searchValue);
+                const matchesStatus = statusValue === 'ALL' || item.status === statusValue;
+                return matchesSearch && matchesStatus;
+            });
+
+            renderTable(filtered);
+        }
+
+        // Dynamic Statistics
+        function updateStatistics() {
+            const pending = candidates.filter(c => c.status === 'PENDING').length;
+            const complete = candidates.filter(c => c.status === 'COMPLETE').length;
+            
+            document.getElementById('stat-pending').innerText = `${pending} Orang`;
+            document.getElementById('stat-complete').innerText = `${complete} Orang`;
+            document.getElementById('stat-total').innerText = `${candidates.length} Orang`;
+        }
+
+        // Initial Render
+        filterData();
+    </script>
 </body>
 </html>
